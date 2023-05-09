@@ -158,6 +158,9 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
             actions.key(response_action["key"])
 
         if name == "editDelete":
+            # work around problem on OEX youtube URL field
+            # so I can use "change" and "paste that" instead of "click", "select all", "paste that"
+            actions.sleep("200ms")
             actions.edit.delete()
 
         if name == "sleep":

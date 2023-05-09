@@ -134,8 +134,18 @@ copy text <user.rango_target>:
   user.rango_command_with_target("copyElementTextContent", rango_target)
 
 # Paste
+#paste to <user.rango_target>:
+#  user.rango_command_with_target("insertToField", rango_target, clip.text())
+# work around problem on OEX youtube URL field
+# so I can use "paste to" instead of "click", "select all", "paste that"
+# The only thing is it doesn't check if the element is editable
+# The worst thing it can happen is you click something that is not editable, like a link, and then it executes the rest of the actions
 paste to <user.rango_target>:
-  user.rango_command_with_target("insertToField", rango_target, clip.text())
+  user.rango_command_with_target("clickElement", rango_target)
+  sleep(200ms)
+  edit.select_all()
+  edit.delete()
+  user.paste(clip.text())
 
 # Insert text to field
 insert <user.text> to <user.rango_target>:
