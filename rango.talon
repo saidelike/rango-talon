@@ -1,7 +1,8 @@
 tag: browser
 -
 settings():
-  user.rango_start_with_direct_clicking = 1
+  # I use explicit clicking by default to reduce false positives
+  user.rango_start_with_direct_clicking = 0
   user.rango_exclude_singles = 0
 
 # Click
